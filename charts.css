@@ -67,6 +67,21 @@ body, html {
 }
 
 
+#legend{
+
+    border: solid #181818 1px;
+    width: 200px;
+    height: 242px;
+    position: absolute;
+    z-index: 99;
+    top: 0px;
+    right: 0px;
+
+
+}
+
+
+
 .numberCircle {
     display: inline-block;
     background-color:#E46A60 ;
