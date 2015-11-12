@@ -5,28 +5,85 @@ body, html {
 
 }
 
-#wrap {
-
+#wrap{
+    height: 100%;
+    width: 100%;
+    position: relative;
 }
 
 #map {
-    margin: 20px;
-    position: fixed;
-    min-height: 90%;
-    width: 30%;
-    border: solid 1px #000;
+    min-height: 100%;
+    width: 100%;
+    border: solid 1px #797979;
+    display: inline-block;
+    -webkit-box-shadow: -1px 2px 12px 1px rgba(107,105,107,1);
+    -moz-box-shadow: -1px 2px 12px 1px rgba(107,105,107,1);
+    box-shadow: -1px 2px 12px 1px rgba(107,105,107,1);
 
 }
+
+
+.headerText{
+
+    height: 30px;
+    background: rgb(226,226,226); /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(226,226,226,1) 0%, rgba(219,219,219,1) 50%, rgba(209,209,209,1) 51%, rgba(254,254,254,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(226,226,226,1) 0%,rgba(219,219,219,1) 50%,rgba(209,209,209,1) 51%,rgba(254,254,254,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(226,226,226,1) 0%,rgba(219,219,219,1) 50%,rgba(209,209,209,1) 51%,rgba(254,254,254,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', endColorstr='#fefefe',GradientType=0 ); /* IE6-9 */
+}
+
+
+
 
 .waterLevelPanel {
 
-    background-color: #e0ebf2;
-    border: solid 1px #000;
-    margin: 5px;
-    width: 210px;
+    margin:10px 10px 5px 10px;
+    width: 190px;
     display: inline-block;
+    -webkit-box-shadow: -1px 2px 12px 1px rgba(107,105,107,1);
+    -moz-box-shadow: -1px 2px 12px 1px rgba(107,105,107,1);
+    box-shadow: -1px 2px 12px 1px rgba(107,105,107,1);
+    background-color: azure;
 }
-#info{
+#infoLeft{
 
-    height: 30%;
+    position: absolute;
+    width: 20%;
+    z-index: 99;
+    top: 10px;
+    left: 10px;
+    overflow-y: scroll;
+    max-height: 90%;
+    min-height: 90%;
+
+
+}
+
+#infoRight{
+
+    position: absolute;
+    width: 100%;
+    z-index: 110;
+    top: 10px;
+    left: 500px;
+    overflow-x: scroll;
+    max-height: 70%;
+    min-height: 70%;
+
+
+}
+
+
+#infoBottom{
+
+    position: absolute;
+    width: 100%;
+    z-index: 100;
+    bottom: 0px;
+    left: 500px;
+    overflow-x: scroll;
+
+
+
 }

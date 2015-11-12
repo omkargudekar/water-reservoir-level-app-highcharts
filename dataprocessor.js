@@ -23,13 +23,16 @@ function drawMap(data) {
     var data=data.locations.location;
     var location = undefined
     var limit = data.length;
-    var image="red.png";
     for (var i = 0; i < limit; i++) {
+
+        var image=" http://thydzik.com/thydzikGoogleMap/markerlink.php?text=1"+divCounter
+
+        data[i].image=image;
         location = new google.maps.LatLng(data[i].latitude, data[i].longitude);
 
         if(i==1){
             googleMap = new google.maps.Map(document.getElementById('map'), {
-                zoom: 8,
+                zoom: 7,
                 center: location
             });
         }
@@ -54,6 +57,17 @@ function drawMap(data) {
 
 
     }
+
+    setInterval(function(){
+        for (var i = 0; i < globalData.length; i++) {
+
+            globalData[i].series[1].data[0].update({
+                y: 100
+            });
+        }
+
+    }, 3000);
+
 
 
 }

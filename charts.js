@@ -1,4 +1,5 @@
-var divCounter = 0
+var divCounter=1;
+var globalDiv=['#infoBottom','#infoLeft','#infoRight'];
 
 function getRandomNumber(max, min) {
 
@@ -6,36 +7,37 @@ function getRandomNumber(max, min) {
 
 }
 
-function generateChartDiv(data,pointer) {
+function generateChartDiv(data) {
 
 
-    pointer='';
-
-    data.current = getRandomNumber(data['capacity'] / 2, data['capacity'] / 3 )
-    divCounter++;
+    data.current = getRandomNumber(data['capacity'] / 2, data['capacity'] / 3);
     var highChartPosition = "container-chart" + divCounter;
     var gaugePosition = "gauge-chart" + divCounter;
-    $("#info").append('<div class="waterLevelPanel">' +
-        '<div id="' + highChartPosition + '" style="width: 100%; height: 180px; margin: 0 auto"></div>' +
+    $(globalDiv[divCounter%3]).append('<div class="waterLevelPanel">' +
+        '<div class="headerText"><b>#'+divCounter+'</b>  '+data['address']+'</div>' +
+        '<div id="' + highChartPosition + '" style="width: 100%; height: 190px; margin: 0 auto"></div>' +
         '<svg id="' + gaugePosition + '" width="100%" height="55" onclick="gauge1.update(NewValue());"></svg>' +
         '</div>');
 
-    plotHighchart(data, "#" + highChartPosition,pointer);
+    plotHighchart(data, "#" + highChartPosition, divCounter);
     plotGauge(data, gaugePosition);
 
-    return null;
-
+    divCounter++;
 }
 
-function plotHighchart(data, position,pointer) {
 
-    $(position).highcharts({
+
+function plotHighchart(data, position) {
+
+
+    var chart=$(position).highcharts({
         chart: {
             type: 'column'
         },
         title: {
-            text: pointer+''+data['address']
+            text:  ''
         },
+
         xAxis: {
             categories: [data['address']]
         },
@@ -86,24 +88,14 @@ function plotHighchart(data, position,pointer) {
 
             }]
     });
+
+
+
 }
 function plotGauge(data, position) {
 
-    var config4 = liquidFillGaugeDefaultSettings();
-    config4.circleThickness = 0.15;
-    config4.circleColor = "#2ECCFA";
-    config4.textColor = "#000";
-    config4.waveTextColor = "#000";
-    config4.waveColor = "#2ECCFA";
-    config4.textVertPosition = 0.8;
-    config4.waveAnimateTime = 1000;
-    config4.waveHeight = 0.05;
-    config4.waveAnimate = true;
-    config4.waveRise = false;
-    config4.waveHeightScaling = false;
-    config4.waveOffset = 0.25;
-    config4.textSize = 0.75;
-    config4.waveCount = 3;
-    loadLiquidFillGauge(position, ((data['current']) / (data['capacity']) * 100), config4);
+    loadLiquidFillGauge(position, ((data['current']) / (data['capacity']) * 100));
+
+
 }
 
