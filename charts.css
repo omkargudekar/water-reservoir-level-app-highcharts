@@ -6,6 +6,7 @@ body, html {
 }
 
 #wrap{
+
     height: 100%;
     width: 100%;
     position: relative;
@@ -38,52 +39,42 @@ body, html {
 
 .waterLevelPanel {
 
-    margin:10px 10px 5px 10px;
-    width: 190px;
+    margin:1px 5px 10px 5px;
+    width: 140px;
     display: inline-block;
     -webkit-box-shadow: -1px 2px 12px 1px rgba(107,105,107,1);
     -moz-box-shadow: -1px 2px 12px 1px rgba(107,105,107,1);
     box-shadow: -1px 2px 12px 1px rgba(107,105,107,1);
-    background-color: azure;
+    background: rgb(238,238,238); /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(238,238,238,1) 0%, rgba(238,238,238,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(238,238,238,1) 0%,rgba(238,238,238,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(238,238,238,1) 0%,rgba(238,238,238,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#eeeeee',GradientType=0 );
 }
-#infoLeft{
+#info{
 
+    max-width: 450px;
     position: absolute;
-    width: 20%;
     z-index: 99;
-    top: 10px;
+    top: 70px;
     left: 10px;
     overflow-y: scroll;
     max-height: 90%;
     min-height: 90%;
 
 
-}
-
-#infoRight{
-
-    position: absolute;
-    width: 100%;
-    z-index: 110;
-    top: 10px;
-    left: 500px;
-    overflow-x: scroll;
-    max-height: 70%;
-    min-height: 70%;
-
 
 }
 
 
-#infoBottom{
-
-    position: absolute;
-    width: 100%;
-    z-index: 100;
-    bottom: 0px;
-    left: 500px;
-    overflow-x: scroll;
-
-
-
+.numberCircle {
+    display: inline-block;
+    background-color:#E46A60 ;
+    border-radius: 10%;
+    width: 28px;
+    padding: 1px;
+    border: 1px solid #212121;
+    color: #181818;
+    text-align: center;
+    font: 12px Arial, sans-serif;
 }
