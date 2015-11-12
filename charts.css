@@ -1,0 +1,32 @@
+body, html {
+    height: 100%;
+    width: 100%;
+    text-align: center;
+
+}
+
+#wrap {
+
+}
+
+#map {
+    margin: 20px;
+    position: fixed;
+    min-height: 90%;
+    width: 30%;
+    border: solid 1px #000;
+
+}
+
+.waterLevelPanel {
+
+    background-color: #e0ebf2;
+    border: solid 1px #000;
+    margin: 5px;
+    width: 210px;
+    display: inline-block;
+}
+#info{
+
+    height: 30%;
+}

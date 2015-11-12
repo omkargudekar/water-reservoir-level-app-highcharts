@@ -1,22 +1,49 @@
+var divCounter = 0
+
+function getRandomNumber(max, min) {
+
+    return Math.floor((Math.random() * max) + min);
+
+}
+
+function generateChartDiv(data,pointer) {
 
 
-function plotHighchart(position,address,capacity,histavg,current){
+    pointer='';
+
+    data.current = getRandomNumber(data['capacity'] / 2, data['capacity'] / 3 )
+    divCounter++;
+    var highChartPosition = "container-chart" + divCounter;
+    var gaugePosition = "gauge-chart" + divCounter;
+    $("#info").append('<div class="waterLevelPanel">' +
+        '<div id="' + highChartPosition + '" style="width: 100%; height: 180px; margin: 0 auto"></div>' +
+        '<svg id="' + gaugePosition + '" width="100%" height="55" onclick="gauge1.update(NewValue());"></svg>' +
+        '</div>');
+
+    plotHighchart(data, "#" + highChartPosition,pointer);
+    plotGauge(data, gaugePosition);
+
+    return null;
+
+}
+
+function plotHighchart(data, position,pointer) {
 
     $(position).highcharts({
         chart: {
             type: 'column'
         },
         title: {
-            text: 'Water Status'
+            text: pointer+''+data['address']
         },
         xAxis: {
-            categories: [address]
+            categories: [data['address']]
         },
         yAxis: {
 
             plotLines: [{
                 color: 'red',
-                value: histavg,
+                value: data['histavg'],
                 width: '2',
                 zIndex: 200
             }],
@@ -37,7 +64,7 @@ function plotHighchart(position,address,capacity,histavg,current){
             column: {
                 stacking: 'normal',
                 dataLabels: {
-                    enabled: true,
+                    enabled: false,
                     color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
                     style: {
                         textShadow: '0 0 3px black'
@@ -45,24 +72,29 @@ function plotHighchart(position,address,capacity,histavg,current){
                 }
             }
         },
-        series: [{
-            data: [capacity],
-            color: '#F7D774'
-        },
+        series: [
             {
-                data: [current],
-                color: '#0303C2'
+                data: [(data['capacity'] - data['current'])],
+                color: '#F7D774',
+                showInLegend: false
+
+            },
+            {
+                data: [data['current']],
+                color: '#0303C2',
+                showInLegend: false
+
             }]
     });
 }
-function plotGauge(position,value){
+function plotGauge(data, position) {
 
     var config4 = liquidFillGaugeDefaultSettings();
     config4.circleThickness = 0.15;
-    config4.circleColor = "#808015";
-    config4.textColor = "#555500";
-    config4.waveTextColor = "#FFFFAA";
-    config4.waveColor = "#AAAA39";
+    config4.circleColor = "#2ECCFA";
+    config4.textColor = "#000";
+    config4.waveTextColor = "#000";
+    config4.waveColor = "#2ECCFA";
     config4.textVertPosition = 0.8;
     config4.waveAnimateTime = 1000;
     config4.waveHeight = 0.05;
@@ -72,6 +104,6 @@ function plotGauge(position,value){
     config4.waveOffset = 0.25;
     config4.textSize = 0.75;
     config4.waveCount = 3;
-    loadLiquidFillGauge(position, value, config4);
+    loadLiquidFillGauge(position, ((data['current']) / (data['capacity']) * 100), config4);
 }
 
